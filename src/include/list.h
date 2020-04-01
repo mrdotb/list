@@ -49,12 +49,22 @@ typedef enum		e_list
 	LIST_OK = 0,
 	LIST_ERR_ALLOC = 1,
 	LIST_ITER_END = 2,
+	LIST_EMPTY = 3,
 }					t_enum_list;
 
 t_enum_list			list_new(t_list **out);
+
+void				list_destroy(t_list *list);
+void				list_destroy_cb(t_list *list, void (*cb)(void*));
+t_enum_list			list_remove_all(t_list *list);
+t_enum_list			list_remove_all_cb(t_list *list, void (*cb)(void*));
+void				*unlinkn(t_list *list, t_node *node);
+t_enum_list			unlinkn_all(t_list *list, void (*cb)(void*));
+
 t_enum_list			list_add_first(t_list *list, void *element);
 t_enum_list			list_add_last(t_list *list, void *element);
 t_enum_list			list_add_at(t_list *list, void *element, size_t index);
+t_enum_list			list_add_first(t_list *list, void *element);
 
 size_t				list_size(t_list *list);
 
